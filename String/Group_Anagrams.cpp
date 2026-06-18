@@ -16,5 +16,27 @@ public:
         }
         return result;
     }
+
+    // approach : hash table (optimised)
+    // time complexity : O(n*k)
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>> result;
+        unordered_map<string, vector<string>> map;
+        
+        for (const string& s : strs) {
+            string key(26, 0); 
+            
+            for (char c : s) {
+                key[c - 'a']++; 
+            }
+            map[key].push_back(s);
+        }
+        
+        for (auto& i : map) {
+            result.push_back(move(i.second)); 
+        }
+        return result;
+    }
 };
+
 
